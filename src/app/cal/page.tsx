@@ -42,6 +42,10 @@ interface EventFormState {
   endTime: string;
 }
 
+const heatmapData: HeatmapData = Array(7).fill(0).map(() => 
+  Array(24).fill(0).map(() => Math.floor((Math.random()) * 10 +1))
+);
+
 const App: FC = () => {
   // Use a ref to generate unique IDs for events
   const eventIdCounter = useRef(0);
@@ -56,10 +60,6 @@ const App: FC = () => {
     },
   ]);
   
-
-  const heatmapData: HeatmapData = Array(7).fill(0).map(() => 
-    Array(24).fill(0).map(() => Math.floor((Math.random()) * 10 +1))
-  );
 
   console.log(heatmapData);
   
