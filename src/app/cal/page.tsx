@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, useState, useRef, useEffect } from 'react'
+import { FC, useState, useRef } from 'react'
 import { Calendar, dateFnsLocalizer, Event as CalendarEventType, SlotInfo } from 'react-big-calendar'
 import withDragAndDrop, { withDragAndDropProps } from 'react-big-calendar/lib/addons/dragAndDrop'
 import {format} from 'date-fns/format'
@@ -12,9 +12,6 @@ import {addHours} from 'date-fns/addHours'
 import {startOfHour} from 'date-fns/startOfHour'
 import {getHours} from 'date-fns/getHours'
 import {getDay as getDayOfWeek} from 'date-fns/getDay'
-import {addDays} from 'date-fns/addDays'
-import {addWeeks} from 'date-fns/addWeeks'
-import {addMonths} from 'date-fns/addMonths'
 
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
@@ -59,12 +56,10 @@ const App: FC = () => {
     },
   ]);
   
-  // Initialize heatmap data: 7 days x 24 hours with random values 0-10
-  const [heatmapData, setHeatmapData] = useState<HeatmapData>(() => {
-    return Array(7).fill(0).map(() => 
-      Array(24).fill(0).map(() => Math.floor((Math.random()) * 10 +1))
-    );
-  });
+
+  const heatmapData: HeatmapData = Array(7).fill(0).map(() => 
+    Array(24).fill(0).map(() => Math.floor((Math.random()) * 10 +1))
+  );
 
   console.log(heatmapData);
   
@@ -130,11 +125,11 @@ const App: FC = () => {
   };
   
   // Function to update a specific cell's heat value
-  const updateHeatValue = (day: number, hour: number, value: number) => {
-    const newHeatmapData = [...heatmapData];
-    newHeatmapData[day][hour] = Math.min(10, Math.max(0, value)); // Clamp between 0-10
-    setHeatmapData(newHeatmapData);
-  };
+  // const updateHeatValue = (day: number, hour: number, value: number) => {
+  //   const newHeatmapData = [...heatmapData];
+  //   newHeatmapData[day][hour] = Math.min(10, Math.max(0, value)); // Clamp between 0-10
+  //   setHeatmapData(newHeatmapData);
+  // };
   
   // Handle slot selection based on current interaction mode
   const handleSelectSlot = (slotInfo: SlotInfo) => {
@@ -173,6 +168,7 @@ const App: FC = () => {
   // Handle event selection (for editing)
   const handleSelectEvent = (event: object, e: React.SyntheticEvent<HTMLElement>) => {
     // Cast the event to CalendarEvent type
+    console.log(e.target);
     const calEvent = event as CalendarEvent;
     openEventForm(calEvent, false);
   };
@@ -382,7 +378,7 @@ const localizer = dateFnsLocalizer({
   getDay,
   locales,
 })
-//@ts-ignore
+
 const DnDCalendar = withDragAndDrop(Calendar)
 
 export default App
