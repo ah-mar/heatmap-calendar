@@ -5,12 +5,14 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   background-color: white;
   padding: 10px;
+  border: 1px solid #ddd;
 }
 
 /* Header styling */
 .rbc-toolbar {
   margin-bottom: 20px;
   padding: 10px 0;
+  background-color: #f8f9fa;
 }
 
 .rbc-toolbar button {
@@ -32,32 +34,33 @@
   border-color: #007bff;
 }
 
+
 /* Time slots and events */
 .rbc-time-slot {
   border-top: none;
 }
 
 .rbc-event {
-  background-color: rgba(0, 0, 0, 0.55) !important;
+  background-color: rgba(0, 0, 0, 0.35) !important;
   border-radius: 6px !important;
   color: white !important;
   padding: 6px 10px !important;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2) !important;
-  border: 2px solid rgba(56, 142, 60, 0.9) !important;
-  margin: 4px 6px !important;
+  border: 2px solid rgba(0, 0, 0, 0.5) !important;
+  margin: 0px 8px !important;
   max-width: calc(100% - 12px) !important;
   transition: all 0.2s ease !important;
 }
 
 .rbc-event:hover {
-  background-color: rgba(76, 175, 80, 0.85) !important;
+  background-color: rgba(0, 0, 0, 0.85) !important;
   transform: translateY(-1px) !important;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25) !important;
 }
 
 .rbc-event.rbc-selected {
-  background-color: rgba(56, 142, 60, 0.85) !important;
-  border: 2px solid rgba(27, 94, 32, 0.9) !important;
+  background-color: rgba(0, 0, 0, 0.35) !important;
+  border: 2px solid rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Improve event text readability */
@@ -196,7 +199,7 @@
 /* Time display cells - exclude from heatmap */
 .rbc-time-gutter .rbc-timeslot-group,
 .rbc-time-header-gutter {
-  background-color: #f8f9fa !important;
+  background-color: #f8f9fa !important; /* Light gray background */
   border-right: 1px solid rgba(221, 221, 221, 0.5);
 }
 
@@ -230,7 +233,7 @@
 
 /* Ensure the all-day section has consistent styling */
 .rbc-allday-cell {
-  background-color: #f8f9fa;
+  background-color: #f8f9fa !important;
   border-bottom: 1px solid rgba(221, 221, 221, 0.5);
 }
 
@@ -247,7 +250,6 @@
 }
 
 /* For a completely borderless look */
-.rbc-time-view, 
 .rbc-time-header, 
 .rbc-time-header-content,
 .rbc-time-header-gutter,
@@ -350,7 +352,7 @@
 
 .cancel-button {
   background-color: #f8f9fa;
-  color: #333;
+  color: #000;
   border: 1px solid #ddd;
 }
 
@@ -436,12 +438,12 @@
 }
 
 .form-actions button {
-  color: white !important;
+  color: white;
   font-weight: 500 !important;
 }
 
 .cancel-button {
-  color: #333 !important;
+  color: #000 !important;
 }
 
 /* Reset any inherited text shadows or other text effects */
@@ -503,3 +505,24 @@
 .edit-all-button:hover {
   background-color: #0069d9;
 } 
+
+@media print {
+  .calendar-container {
+    height: auto; /* Allow the calendar to expand to its full height */
+    overflow: visible; /* Ensure all content is visible */
+  }
+
+  .rbc-time-view {
+    height: auto !important; /* Override any fixed height */
+  }
+
+  .rbc-time-content {
+    overflow: visible !important; /* Ensure all time slots are visible */
+  }
+
+  /* Hide any non-essential elements */
+  .event-form-modal,
+  .print-button {
+    display: none;
+  }
+}
