@@ -1,0 +1,505 @@
+/* Base calendar styling */
+.rbc-calendar {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  padding: 10px;
+}
+
+/* Header styling */
+.rbc-toolbar {
+  margin-bottom: 20px;
+  padding: 10px 0;
+}
+
+.rbc-toolbar button {
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 6px 12px;
+  background-color: white;
+  margin-right: 5px;
+}
+
+.rbc-toolbar button:hover {
+  background-color: #f5f5f5;
+}
+
+.rbc-toolbar button.rbc-active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+/* Time slots and events */
+.rbc-time-slot {
+  border-top: none;
+}
+
+.rbc-event {
+  background-color: rgba(0, 0, 0, 0.55) !important;
+  border-radius: 6px !important;
+  color: white !important;
+  padding: 6px 10px !important;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2) !important;
+  border: 2px solid rgba(56, 142, 60, 0.9) !important;
+  margin: 4px 6px !important;
+  max-width: calc(100% - 12px) !important;
+  transition: all 0.2s ease !important;
+}
+
+.rbc-event:hover {
+  background-color: rgba(76, 175, 80, 0.85) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25) !important;
+}
+
+.rbc-event.rbc-selected {
+  background-color: rgba(56, 142, 60, 0.85) !important;
+  border: 2px solid rgba(27, 94, 32, 0.9) !important;
+}
+
+/* Improve event text readability */
+.rbc-event-content {
+  font-weight: bold !important;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8) !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* Make sure events don't overflow their containers */
+.rbc-event-label {
+  font-size: 0.85em !important;
+  opacity: 0.9 !important;
+}
+
+/* Day/week view */
+.rbc-time-view {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.rbc-time-header {
+  background-color: #f8f9fa;
+}
+
+.rbc-time-header-content {
+  border-bottom: 1px solid rgba(221, 221, 221, 0.5);
+}
+
+/* Month view */
+.rbc-month-view {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.rbc-month-header {
+  background-color: #f8f9fa;
+}
+
+.rbc-day-bg {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Heatmap styling for time slots */
+.rbc-time-slot.heatmap-cell {
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+/* Remove borders between columns */
+.rbc-time-column {
+  border-left: none;
+}
+
+/* Make the day columns more seamless */
+.rbc-day-slot {
+  border-right: none;
+}
+
+.rbc-timeslot-group {
+  border-bottom: 1px solid rgba(221, 221, 221, 0.3);
+}
+
+/* Optional: Add subtle grid indicators instead of borders */
+.rbc-time-gutter .rbc-timeslot-group {
+  background-color: #f8f9fa !important;
+  border-right: 1px solid rgba(221, 221, 221, 0.5);
+  position: relative;
+}
+
+.rbc-time-gutter .rbc-timeslot-group * {
+  background-color: #f8f9fa !important;
+}
+
+.rbc-time-gutter .rbc-timeslot-group::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f8f9fa !important;
+  z-index: 1;
+}
+
+.rbc-time-gutter .rbc-label {
+  position: relative;
+  z-index: 2;
+}
+
+/* We'll use data attributes to control the intensity */
+.rbc-time-slot[data-heat="0"] {
+  background-color: #f8f9fa;
+}
+
+.rbc-time-slot[data-heat="1"] {
+  background-color: #e3f2fd;
+}
+
+.rbc-time-slot[data-heat="2"] {
+  background-color: #bbdefb;
+}
+
+.rbc-time-slot[data-heat="3"] {
+  background-color: #90caf9;
+}
+
+.rbc-time-slot[data-heat="4"] {
+  background-color: #64b5f6;
+}
+
+.rbc-time-slot[data-heat="5"] {
+  background-color: #42a5f5;
+}
+
+.rbc-time-slot[data-heat="6"] {
+  background-color: #2196f3;
+}
+
+.rbc-time-slot[data-heat="7"] {
+  background-color: #1e88e5;
+}
+
+.rbc-time-slot[data-heat="8"] {
+  background-color: #1976d2;
+}
+
+.rbc-time-slot[data-heat="9"] {
+  background-color: #1565c0;
+}
+
+.rbc-time-slot[data-heat="10"] {
+  background-color: #0d47a1;
+}
+
+/* Time display cells - exclude from heatmap */
+.rbc-time-gutter .rbc-timeslot-group,
+.rbc-time-header-gutter {
+  background-color: #f8f9fa !important;
+  border-right: 1px solid rgba(221, 221, 221, 0.5);
+}
+
+/* Remove heatmap data attributes from time gutter */
+.rbc-time-gutter .rbc-timeslot-group[data-heat] {
+  background-color: #f8f9fa !important;
+}
+
+/* Improve time label visibility */
+.rbc-time-gutter .rbc-label {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Improve header text contrast */
+.rbc-header {
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Improve day/date labels */
+.rbc-header span {
+  color: #333;
+}
+
+/* Ensure time slots in the header have consistent styling */
+.rbc-time-header-content .rbc-header {
+  border-bottom: 1px solid rgba(221, 221, 221, 0.5);
+}
+
+/* Ensure the all-day section has consistent styling */
+.rbc-allday-cell {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rbc-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .rbc-toolbar-label {
+    margin: 10px 0;
+  }
+}
+
+/* For a completely borderless look */
+.rbc-time-view, 
+.rbc-time-header, 
+.rbc-time-header-content,
+.rbc-time-header-gutter,
+.rbc-time-content {
+  border: none !important;
+}
+
+.rbc-time-content > * + * > * {
+  border-left: none !important;
+}
+
+/* Event Form Modal */
+.event-form-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.event-form-content {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.event-form-content h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form-actions button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.save-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.save-button:hover {
+  background-color: #0069d9;
+}
+
+.cancel-button {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.cancel-button:hover {
+  background-color: #e2e6ea;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  margin-right: auto;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Improve form text visibility */
+.event-form-content input,
+.event-form-content textarea,
+.event-form-content select {
+  color: #333 !important;
+  background-color: white !important;
+  font-size: 1rem !important;
+}
+
+.event-form-content label {
+  color: #333 !important;
+  font-weight: 500 !important;
+}
+
+.event-form-content h2 {
+  color: #333 !important;
+}
+
+/* Ensure form inputs have proper contrast */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #007bff !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+  outline: none !important;
+}
+
+/* Make placeholder text visible */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #999 !important;
+  opacity: 1 !important;
+}
+
+/* More aggressive form text visibility fixes */
+.event-form-modal * {
+  color: initial;
+}
+
+.event-form-content {
+  color: #333 !important;
+  background-color: white !important;
+}
+
+.event-form-content h2 {
+  color: #333 !important;
+  font-weight: bold !important;
+}
+
+.event-form-content label {
+  color: #333 !important;
+  font-weight: 500 !important;
+  display: block !important;
+}
+
+.event-form-content input,
+.event-form-content textarea,
+.event-form-content select {
+  color: #333 !important;
+  background-color: white !important;
+  border: 1px solid #ccc !important;
+  padding: 8px !important;
+  font-size: 16px !important;
+  width: 100% !important;
+}
+
+.form-actions button {
+  color: white !important;
+  font-weight: 500 !important;
+}
+
+.cancel-button {
+  color: #333 !important;
+}
+
+/* Reset any inherited text shadows or other text effects */
+.event-form-modal * {
+  text-shadow: none !important;
+}
+
+/* Recurring event edit choice */
+.recurring-edit-choice {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #e9ecef;
+}
+
+.recurring-edit-choice h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.recurring-edit-choice p {
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.recurring-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-single-button,
+.edit-all-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  flex: 1;
+  border: 1px solid #ddd;
+  transition: all 0.2s;
+}
+
+.edit-single-button {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.edit-single-button:hover {
+  background-color: #e2e6ea;
+}
+
+.edit-all-button {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.edit-all-button:hover {
+  background-color: #0069d9;
+} 
